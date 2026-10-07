@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run: 
-        working-directory: ./pokemonforchildren/project1
+        working-directory: ./pokemonforchildren/project1/project1
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./pokemonforchildren/project1/dist
+          publish_dir: ./pokemonforchildren/project1/project1/dist
       
 
 
