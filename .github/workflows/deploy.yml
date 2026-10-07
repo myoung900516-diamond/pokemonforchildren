@@ -1,0 +1,67 @@
+name: Deploy Pokemon For Children
+
+
+on: 
+  push: 
+    branches: 
+      - main
+    paths: 
+      - 'pokemonforchildren/project1/**'
+      - '.github/workflows/deploy.yml'
+
+permissions: 
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run: 
+        working-directory: ./pokemonforchildren/project1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: pokemonforchildren/project1/package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with: 
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./pokemonforchildren/project1/dist
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
